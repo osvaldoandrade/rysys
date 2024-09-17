@@ -1,0 +1,31 @@
+<assembly>
+	<id>iso8583-client</id>
+	<formats>
+		<format>jar</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>		
+		<dependencySet>
+			<scope>test</scope>		
+			<unpack>true</unpack>
+			<unpackOptions>
+				<excludes>
+					<exclude>**/log4j.properties</exclude>
+					<exclude>**/LICENSE*</exclude>
+					<exclude>**/COPYRIGHT*</exclude>
+					<exclude>**/NOTICE*</exclude>
+					<exclude>**/MANIFEST.MF</exclude>
+				</excludes>			
+			</unpackOptions>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.testOutputDirectory}</directory>
+			<includes>
+				<include>**/*.*</include>
+			</includes>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>	

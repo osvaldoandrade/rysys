@@ -1,0 +1,25 @@
+<assembly>
+	<id>fgl-parser</id>
+	<formats>
+		<format>jar</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>		
+		<dependencySet>
+			<scope>runtime</scope>		
+			<unpack>true</unpack>
+			<unpackOptions>
+				<excludes>
+					<exclude>**/LICENSE*</exclude>
+					<exclude>**/COPYRIGHT*</exclude>
+					<exclude>**/NOTICE*</exclude>
+					<exclude>**/MANIFEST.MF</exclude>
+					<exclude>**/builddef.lst</exclude>
+					<exclude>**/resources/*</exclude>
+					<exclude>**/XPP3_1.1.4c_MIN_VERSION</exclude>
+					<exclude>**/jaramiko.manifest</exclude>
+				</excludes>			
+			</unpackOptions>
+		</dependencySet>
+	</dependencySets>
+</assembly>	

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<jmxConfigurator contextName="rysys" />
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>[%date] [%-6p] [%logger{0}] %m%n</Pattern>
+    </layout>
+  </appender>
+  <appender name="rolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <File>${rysys.log.dir}/rysys.log</File>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>[%date] [%-6p] [%logger{0}] %m%n</Pattern>
+    </layout>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>20</maxIndex>
+      <FileNamePattern>rysys.log.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>5MB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  <logger name="br.com.codecompany.rysys" additivity="false" level="${rysys.log.level}">
+    <appender-ref ref="console"/>
+    <appender-ref ref="rolling"/>
+  </logger>
+  <root level="${rysys.log.level}"/>
+</configuration>

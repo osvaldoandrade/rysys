@@ -1,0 +1,70 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.codecompany</groupId>
+    <artifactId>rysys-connector</artifactId>
+    <packaging>pom</packaging>
+    <name>rysys-connector</name>
+    <version>1.1.9</version>
+    <description>Rysys JCA Connector</description>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <id>JbossRepository</id>
+            <name>Jboss Repository</name>
+            <url>http://repository.jboss.org</url>
+        </repository>
+        <repository>
+            <id>codecompany_internal</id>
+            <name>code|company managed internal repository</name>
+            <url>http://www.codecompany.org/archiva/repository/codecompany_internal</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <rysys.log.dir>.</rysys.log.dir>
+        <rysys.log.level>debug</rysys.log.level>
+        <maven.compiler.source>1.5</maven.compiler.source>
+        <maven.compiler.target>1.5</maven.compiler.target>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>rysys-core</module>
+        <module>rysys-api</module>
+        <module>rysys-utils</module>
+        <module>rysys-cobol</module>
+        <module>rysys-cobol-connector</module>
+        <module>rysys-fgl</module>
+        <module>rysys-fgl-connector</module>	
+        <module>rysys-fgl-parser</module>
+        <module>rysys-iso8583</module>
+        <module>rysys-iso8583-connector</module>
+        <!--<module>rysys-monitoring</module>-->
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <trimStackTrace>false</trimStackTrace>
+                    <useFile>false</useFile>
+                    <reportFormat>plain</reportFormat>
+                    <forkMode>never</forkMode>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

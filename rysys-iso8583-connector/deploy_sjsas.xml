@@ -1,0 +1,287 @@
+<project default="deploy-sjsas">
+	<property file="deploy_sjsas.properties" />
+	
+	<property name="com.sun.aas.installRoot" value="C:/Java/Sun/AppServer" />
+	<property name="sjsas.user" value="admin" />
+	<property name="sjsas.password" value="adminadmin" />
+	<property name="sjsas.admin" value="${com.sun.aas.installRoot}/bin/asadmin" />
+
+	<property name="sjsas.verifier" value="${com.sun.aas.installRoot}/bin/verifier" />
+
+	<property name="exec.asadmin" value="cmd.exe" />
+	<property name="exec.asadmin.part2" value=" /c ${sjsas.admin}" />
+
+	<property name="exec.verifier" value="cmd.exe" />
+	<property name="exec.verifier.part2" value=" /c ${sjsas.verifier}" />	
+	
+	<!-- DEPLOY -->
+	<target name="deploy-sjsas">
+		<echo>Efetuando deploy do conector no SJSAS...</echo>
+		<antcall target="create-resource-adapter-config" />
+		<antcall target="deploy" />
+		<antcall target="create-connector-connection-pool" />
+		<antcall target="create-connector-resource" />
+		<!--
+		<echo>Efetuando deploy do exemplo web no SJSAS...</echo>
+		<antcall target="deploy-ear" />
+		-->
+	</target>
+	
+	<target name="validate-rar" depends="check-rar-name" if="invalid.rar.name">
+		<echo>===================================================================</echo>
+		<echo>* Please verify the property 'rysys.file.rar'. The file path must *</echo>
+		<echo>* not contain '-' or ' ' characters                               *</echo>
+		<echo>===================================================================</echo>
+		<fail message="Invalid RAR file"/>
+	</target>
+	
+	<target name="validate-ear" depends="check-ear-name" if="invalid.ear.name">
+		<echo>===================================================================</echo>
+		<echo>* Please verify the property 'rysys.file.ear'. The file path must *</echo>
+		<echo>* not contain '-' or ' ' characters                               *</echo>
+		<echo>===================================================================</echo>
+		<fail message="Invalid EAR file"/>		
+	</target>	
+	
+	<target name="check-rar-name">
+		<condition property="invalid.rar.name">
+			<or>
+				<contains substring="-" string="${rysys.file.rar}" />
+				<contains substring=" " string="${rysys.file.rar}" />
+			</or>
+		</condition>
+	</target>
+	
+	<target name="check-ear-name">
+		<condition property="invalid.ear.name">
+			<or>
+				<contains substring="-" string="${rysys.file.ear}" />
+				<contains substring=" " string="${rysys.file.ear}" />				
+			</or>
+		</condition>		
+	</target>	
+	
+	<target name="undeploy-sjsas">
+		<echo>Efetuando undeploy do conector no SJSAS...</echo>
+		<antcall target="undeploy" />
+		<antcall target="undeploy-ear" />
+	</target>
+
+	<!-- JDBC CONNECTION POOL -->
+	<target name="create-jdbc-connection-pool">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />	
+			<arg line="create-jdbc-connection-pool" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--echo=true" />
+			<arg line="--datasourceclassname=${jdbc.driver}" />  
+			<arg line="--restype=${jdbc.type}" />
+			<arg line="--property" />
+			<arg line="${jdbc.props}"/>
+			<arg line="${jdbc.pool}" />
+		</exec>
+	</target>
+	
+	<target name="delete-jdbc-connection-pool">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />	
+			<arg line="delete-jdbc-connection-pool" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--echo=true" />
+			<arg line="${jdbc.pool}" />
+		</exec>			
+	</target>
+
+	<!-- JDBC RESOURCE -->	
+	<target name="create-jdbc-resource">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />	
+			<arg line="create-jdbc-resource" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--echo=true" />
+			<arg line="--connectionpoolid=${jdbc.pool}"/>
+			<arg line="${jdbc.jndi}" />			
+		</exec>
+	</target>
+	
+	<target name="delete-jdbc-resource">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />	
+			<arg line="delete-jdbc-resource" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--echo=true" />
+			<arg line="${jdbc.jndi}" />			
+		</exec>
+	</target>	
+	
+	<!-- CONNECTOR RESOURCE ADAPTER CONFIG -->
+	<target name="delete-resource-adapter-config">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="delete-resource-adapter-config" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="${rysys.module}" />
+		</exec>
+	</target>
+
+	<target name="create-resource-adapter-config">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="create-resource-adapter-config" />
+			<arg line="--echo=true" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--property" />
+			<arg line="${rysys.props}" />
+			<arg line="${rysys.module}" />
+		</exec>
+	</target>
+
+	<!-- DEPLOY WEB -->
+	<target name="deploy-ear">
+		<antcall target="validate-ear" />
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="deploy" />
+			<arg line="--echo=true" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--name" />
+			<arg line="${rysys.web.module}" />
+			<arg line="${rysys.file.ear}" />
+		</exec>
+	</target>
+
+	<target name="undeploy-ear">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="undeploy" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--cascade=true" />
+			<arg line="${rysys.web.module}" />
+		</exec>
+	</target>
+
+	<!-- DEPLOY/UNDEPLOY -->
+	<target name="undeploy">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="undeploy" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--cascade=true" />
+			<arg line="${rysys.module}" />
+		</exec>
+	</target>
+	
+	<target name="deploy">
+		<!-- <antcall target="validate-rar" /> -->		
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="deploy" />
+			<arg line="--echo=true" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--name" />
+			<arg line="${rysys.module}" />
+			<arg file="${rysys.file.rar}" />
+		</exec>
+	</target>
+
+	<!-- CONNECTOR CONNECTION POOL -->
+	<target name="delete-connector-connection-pool">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="delete-connector-connection-pool" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="${rysys.module}" />
+		</exec>
+	</target>
+
+	<target name="create-connector-connection-pool">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="create-connector-connection-pool" />
+			<arg line="--echo=true" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--raname" />
+			<arg line="${rysys.module}" />
+			<arg line="--connectiondefinition" />
+			<arg line="javax.resource.cci.ConnectionFactory" />
+			<arg line="--transactionsupport" />
+			<arg line="XATransaction" />
+			<arg line="--property" />
+			<arg line="${rysys.props}" />
+			<arg line="${rysys.pool}" />
+		</exec>
+	</target>
+
+	<!-- CONNECTOR RESOURCE -->
+	<target name="delete-connector-resource">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="delete-connector-resource" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="${rysys.jndi}" />
+		</exec>
+	</target>
+
+	<target name="create-connector-resource">
+		<exec executable="${exec.asadmin}">
+			<arg line="${exec.asadmin.part2}" />
+			<arg line="create-connector-resource" />
+			<arg line="--echo=true" />
+			<arg line="--user" />
+			<arg line="${sjsas.user}" />
+			<arg line="--password" />
+			<arg line="${sjsas.password}" />
+			<arg line="--poolname" />
+			<arg line="${rysys.pool}" />
+			<arg line="${rysys.jndi}" />
+		</exec>
+	</target>
+
+	<!-- VERIFY -->
+	<target name="verify">
+		<exec executable="${exec.verifier}">
+			<arg line="${exec.verifier.part2}" />
+			<arg line="${rysys.file.rar}" />
+		</exec>
+	</target>
+
+</project>

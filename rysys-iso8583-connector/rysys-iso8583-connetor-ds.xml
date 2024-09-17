@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE connection-factories PUBLIC
+          "-//JBoss//DTD JBOSS JCA Config 1.5//EN"
+          "http://www.jboss.org/j2ee/dtd/jboss-ds_1_5.dtd">
+
+<connection-factories>
+	<tx-connection-factory>
+		<jndi-name>ra/rysys-connector</jndi-name>
+		<xa-transaction />
+		<rar-name>rysys-cobol-connector-1.1.1.rar</rar-name>
+
+		<connection-definition>javax.resource.cci.ConnectionFactory</connection-definition>
+
+		<config-property name="hostname" type="java.lang.String">172.16.81.33</config-property>
+
+		<config-property name="port" type="java.lang.Integer">22</config-property>
+
+		<config-property name="username" type="java.lang.String">rysys</config-property>
+
+		<config-property name="password" type="java.lang.String">rysys</config-property>
+
+		<config-property name="timeout" type="java.lang.Integer">2000</config-property>
+
+		<config-property name="driver" type="java.lang.String">ISO-8583</config-property>
+
+		<config-property name="balancingStrategy" type="java.lang.String">SINGLE_SERVER</config-property>
+
+		<config-property name="balancingConfigFile" type="java.lang.String">servers-config.xml</config-property>
+
+		<!-- JBoss: java:/jdbc/rysys-monitoring -->
+		<config-property name="monitoringDataSource" type="java.lang.String"></config-property>
+
+		<config-property name="cacheConfigFile" type="java.lang.String"></config-property>
+
+		<!-- http://www.jboss.org/community/wiki/StrangePoolingConnectionsDestroyed -->
+		<application-managed-security/>
+		 
+		<min-pool-size>1</min-pool-size>
+		<max-pool-size>3</max-pool-size>
+
+	</tx-connection-factory>
+</connection-factories>

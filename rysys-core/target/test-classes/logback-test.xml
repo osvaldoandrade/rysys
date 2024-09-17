@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>[%date] [%-6p] [%class{0}] %m%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="br.com.codecompany.rysys.core" additivity="false" level="debug">
+    <appender-ref ref="console"/>
+  </logger>
+  <root level="debug"/>
+</configuration>

@@ -1,0 +1,16 @@
+<servers>
+	<server>
+		<hostname>192.168.91.128</hostname>
+		<port>22</port>
+		<username>rysys</username>
+		<password>{DES}ReYiutX2drQ=</password>
+		<timeout>2000</timeout>
+	</server>
+	<server>
+		<hostname>192.168.91.128</hostname>
+		<port>22</port>
+		<username>rysys</username>
+		<password>{DES}ReYiutX2drQ=</password>
+		<timeout>2000</timeout>		
+	</server>		
+</servers>

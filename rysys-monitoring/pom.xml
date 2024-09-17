@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.codecompany</groupId>
+    <artifactId>rysys-monitoring</artifactId>
+    <packaging>jar</packaging>
+    <name>rysys-monitoring</name>
+    <version>1.1.9</version>
+    <description>Rysys JCA Connector - monitoring</description>
+
+	<parent>
+		<groupId>br.com.codecompany</groupId>
+		<artifactId>rysys-connector</artifactId>
+		<version>1.1.9</version>
+	</parent>		
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <trimStackTrace>false</trimStackTrace>
+                    <useFile>false</useFile>
+                    <reportFormat>plain</reportFormat>
+                    <forkMode>never</forkMode>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+			<!--
+				cria um cliente auto-executavel e inclui dependencias descompactadas
+			-->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>rysys_monitoring</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>${basedir}/rysys-monitoring.xml</descriptor>
+                            </descriptors>
+                            <archive>
+                                <manifest>
+                                    <mainClass>br.com.codecompany.rysys.jmx.client.Main</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+	
+    <dependencies>
+		<dependency>
+		    <groupId>com.toedter</groupId>
+		    <artifactId>jcalendar</artifactId>
+		    <version>1.3.2</version>
+		</dependency>    
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>0.9.15</version>
+        </dependency>
+		<dependency>
+			<groupId>net.sf.jtreemap</groupId>
+			<artifactId>jtreemap</artifactId>
+			<version>1.1.0</version>
+		</dependency>        
+		<!-- jfreechart -->
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.16</version>
+        </dependency>
+        <dependency>
+            <groupId>jfreechart</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.codecompany</groupId>
+            <artifactId>rysys-core</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.codecompany</groupId>
+            <artifactId>rysys-utils</artifactId>
+            <version>1.1.9</version>
+        </dependency>        
+    </dependencies>
+</project>

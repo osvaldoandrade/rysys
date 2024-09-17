@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="1" failures="0" name="br.com.codecompany.rysys.api.test.annotation.TestCollectionFieldAnnotation" time="0.091" errors="0" skipped="0">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="localRepository" value="/Users/osvaldoandrade/.m2/repository"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="env.XPC_SERVICE_NAME" value="0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/classes"/>
+    <property name="env.TMPDIR" value="/var/folders/j2/p8fxc14j08jc8hnv2nctcvtw0000gn/T/"/>
+    <property name="env.PWD" value="/Users/osvaldoandrade/Projects/code|company/rysys/rysys-api"/>
+    <property name="user.country.format" value="BR"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.runtime.version" value="1.8.0_40-ea-b05"/>
+    <property name="env.Apple_PubSub_Socket_Render" value="/private/tmp/com.apple.launchd.FoibKvVOux/Render"/>
+    <property name="env.DISPLAY" value="/private/tmp/com.apple.launchd.1gtyjexIwx/org.macosforge.xquartz:0"/>
+    <property name="user.name" value="osvaldoandrade"/>
+    <property name="maven.build.version" value="Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 10:51:28-0300)"/>
+    <property name="user.language.format" value="pt"/>
+    <property name="env.USER" value="osvaldoandrade"/>
+    <property name="env.SHELL" value="/bin/bash"/>
+    <property name="env.__CF_USER_TEXT_ENCODING" value="0x1F5:0x0:0x0"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="env.PATH" value="/usr/bin:/bin:/usr/sbin:/sbin"/>
+    <property name="user.language" value="en"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib"/>
+    <property name="classworlds.conf" value="/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven/bin/m2.conf"/>
+    <property name="env.XPC_FLAGS" value="0x0"/>
+    <property name="env.LC_CTYPE" value="UTF-8"/>
+    <property name="java.version" value="1.8.0_40-ea"/>
+    <property name="user.timezone" value="America/Sao_Paulo"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="env.SHLVL" value="1"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="env.JAVA_MAIN_CLASS_31202" value="org.netbeans.Main"/>
+    <property name="user.country" value="US"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="env.LOGNAME" value="osvaldoandrade"/>
+    <property name="os.version" value="10.11"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.version" value="25.40-b09"/>
+    <property name="maven.ext.class.path" value="/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar"/>
+    <property name="env.JAVA_HOME" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="env.JAVA_MAIN_CLASS_32842" value="org.codehaus.plexus.classworlds.launcher.Launcher"/>
+    <property name="user.home" value="/Users/osvaldoandrade"/>
+    <property name="env.NB_EXEC_MAVEN_PROCESS_UUID" value="843294ec-04b2-47cf-9ddc-099ee5039fdc"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="env.M2_HOME" value="/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven"/>
+    <property name="java.library.path" value="/Users/osvaldoandrade/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="maven.home" value="/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar -Dfile.encoding=ISO-8859-1 clean install"/>
+    <property name="java.class.path" value="/Applications/NetBeans/NetBeans 8.0.1.app/Contents/Resources/NetBeans/java/maven/boot/plexus-classworlds-2.4.jar"/>
+    <property name="maven.version" value="3.0.5"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="env.HOME" value="/Users/osvaldoandrade"/>
+    <property name="surefire.test.class.path" value="/Users/osvaldoandrade/Projects/code|company/rysys/rysys-api/target/test-classes:/Users/osvaldoandrade/Projects/code|company/rysys/rysys-api/target/classes:/Users/osvaldoandrade/.m2/repository/br/com/codecompany/rysys-utils/1.1.9/rysys-utils-1.1.9.jar:/Users/osvaldoandrade/.m2/repository/br/com/codecompany/rysys-core/1.1.10/rysys-core-1.1.10.jar:/Users/osvaldoandrade/.m2/repository/com/trilead/ssh2/213/ssh2-213.jar:/Users/osvaldoandrade/.m2/repository/junit/junit/4.3/junit-4.3.jar:/Users/osvaldoandrade/.m2/repository/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar:/Users/osvaldoandrade/.m2/repository/ch/qos/logback/logback-classic/0.9.15/logback-classic-0.9.15.jar:/Users/osvaldoandrade/.m2/repository/ch/qos/logback/logback-core/0.9.15/logback-core-0.9.15.jar:/Users/osvaldoandrade/.m2/repository/com/thoughtworks/xstream/xstream/1.3/xstream-1.3.jar:/Users/osvaldoandrade/.m2/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar:/Users/osvaldoandrade/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/Users/osvaldoandrade/.m2/repository/jboss/jboss-j2ee/4.2.2.GA/jboss-j2ee-4.2.2.GA.jar:"/>
+    <property name="java.io.tmpdir" value="/var/folders/j2/p8fxc14j08jc8hnv2nctcvtw0000gn/T/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="env.SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.TJxCaJzD0k/Listeners"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.ext.dirs" value="/Users/osvaldoandrade/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="user.dir" value="/Users/osvaldoandrade/Projects/code|company/rysys/rysys-api"/>
+    <property name="env.J2D_PIXMAPS" value="shared"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="basedir" value="/Users/osvaldoandrade/Projects/code|company/rysys/rysys-api"/>
+    <property name="file.encoding" value="ISO-8859-1"/>
+    <property name="java.specification.version" value="1.8"/>
+  </properties>
+  <testcase classname="br.com.codecompany.rysys.api.test.annotation.TestCollectionFieldAnnotation" name="populatePrimitiveData" time="0.091"/>
+</testsuite>

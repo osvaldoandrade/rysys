@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!-- (C) 2008 - code|company -->
+
+<connector xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+           http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"
+	version="1.5">
+
+	<description>EIS Resource Adapter</description>
+	<display-name>COBOL JCA Adapter</display-name>
+
+	<vendor-name>code|company</vendor-name>
+	<eis-type>EIS</eis-type>
+	<resourceadapter-version>1.1.1</resourceadapter-version>
+
+	<license>
+		<description>Copyright (c) 2008 - code|company</description>
+		<license-required>false</license-required>
+	</license>
+
+	<resourceadapter>
+		<resourceadapter-class>br.com.codecompany.rysys.core.jca.eis.EisResourceAdapter</resourceadapter-class>
+
+		<outbound-resourceadapter>
+			<connection-definition>
+				<managedconnectionfactory-class>
+					br.com.codecompany.rysys.core.jca.eis.EisManagedConnectionFactory
+				</managedconnectionfactory-class>
+				
+				<config-property>
+					<config-property-name>hostname</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>localhost</config-property-value>
+				</config-property>
+				<config-property>
+					<config-property-name>port</config-property-name>
+					<config-property-type>java.lang.Integer</config-property-type>
+					<config-property-value>22</config-property-value>
+				</config-property>				
+				<config-property>
+					<config-property-name>username</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>rysys_username</config-property-value>
+				</config-property>
+				<config-property>
+					<config-property-name>password</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>rysys_password</config-property-value>
+				</config-property>
+				<config-property>
+					<config-property-name>timeout</config-property-name>
+					<config-property-type>java.lang.Integer</config-property-type>
+					<config-property-value>3000</config-property-value>
+				</config-property>	
+				<config-property>
+					<config-property-name>driver</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>MF_COBOL</config-property-value>
+				</config-property>
+				
+				<!-- JMX datasource -->				
+				<config-property>
+					<config-property-name>monitoringDataSource</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value></config-property-value>
+				</config-property>
+				
+				<!-- CACHE -->
+				<config-property>
+					<config-property-name>cacheConfigFile</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value></config-property-value>
+				</config-property>																											
+				
+				<config-property>
+					<config-property-name>balancingStrategy</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>SINGLE_SERVER</config-property-value>
+				</config-property>
+				<config-property>
+					<config-property-name>balancingConfigFile</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>servers-config.xml</config-property-value>
+				</config-property>																				
+				
+				<connectionfactory-interface>javax.resource.cci.ConnectionFactory</connectionfactory-interface>
+				<connectionfactory-impl-class>br.com.codecompany.rysys.core.jca.eis.EisConnectionFactory</connectionfactory-impl-class>
+
+				<connection-interface>javax.resource.cci.Connection</connection-interface>
+				<connection-impl-class>br.com.codecompany.rysys.core.jca.eis.EisConnection</connection-impl-class>
+			</connection-definition>
+			<transaction-support>XATransaction</transaction-support>
+			<reauthentication-support>false</reauthentication-support>
+		</outbound-resourceadapter>
+		
+		<!--
+		<inbound-resourceadapter>
+			<messageadapter>
+				<messagelistener>
+					<messagelistener-type>br.com.codecompany.rysys.core.jca.eis.EisListener</messagelistener-type>
+					<activationspec>
+						<activationspec-class>br.com.codecompany.rysys.core.jca.eis.EisActivationSpec</activationspec-class>
+					</activationspec>
+				</messagelistener>
+			</messageadapter>
+		</inbound-resourceadapter>
+		-->
+		
+	</resourceadapter>
+</connector>

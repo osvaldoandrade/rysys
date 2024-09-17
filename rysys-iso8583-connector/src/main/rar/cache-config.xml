@@ -1,0 +1,9 @@
+<cache>
+	<entries>
+		<!-- 
+			request = string sent to EIS
+			maxTimeInCacheMillis = life time (0 means immortal)
+		 -->
+		<entry request="complete_request_string" maxTimeInCacheMillis="1000"/>
+	</entries>
+</cache>

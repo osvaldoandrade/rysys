@@ -1,0 +1,11 @@
+package br.com.codecompany.rysys.api.annotation.parser;
+
+
+public class FloatFieldParser extends BigDecimalFieldParser {
+
+	@Override
+	protected Number formatNumber(String numberAsString, int precision) {
+		return super.formatNumber(numberAsString, precision).floatValue();
+	}
+	
+}
